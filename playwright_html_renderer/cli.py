@@ -4,7 +4,7 @@ import sys
 from playwright.sync_api import sync_playwright
 
 
-VERSION = "0.2"
+VERSION = "0.3"
 
 
 def get_raw_html_content(filepath: str) -> str:
@@ -17,6 +17,7 @@ def get_raw_html_content(filepath: str) -> str:
         Raw HTML content as a string.
     """
     if filepath == "-":
+        sys.stdin.reconfigure(encoding="utf-8")
         return sys.stdin.read()
 
     with open(filepath, "r", encoding="utf-8") as file:
@@ -54,6 +55,7 @@ def save_rendered_html_content(html_content: str, filepath: str) -> None:
         filepath: Path to the output file, or '-' for STDOUT.
     """
     if filepath == "-":
+        sys.stdout.reconfigure(encoding="utf-8")
         sys.stdout.write(html_content)
     else:
         with open(filepath, "w", encoding="utf-8") as file:
