@@ -1,11 +1,10 @@
 import argparse
-import pkg_resources
 import sys
 
 from playwright.sync_api import sync_playwright
 
 
-VERSION = pkg_resources.get_distribution("playwright-html-renderer").version
+VERSION = "0.2"
 
 
 def get_raw_html_content(filepath: str) -> str:
